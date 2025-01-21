@@ -32,8 +32,8 @@ jobs:
         run: npm install --verbose
 
      
-      - name: Run linter
-        run: npm run lint 
+          #- name: Run linter
+          #run: npm run lint 
       
       - name: Run linter (eslint)
         run: npx eslint .
