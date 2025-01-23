@@ -39,8 +39,8 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/nodejs-my:latest
 
       - name: Push Docker image
-        run:  docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-my:latest
-
+        run:  docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-my:latest ․
+ 
       - name: Run Docker container
         run: docker run -d --name nodejs-app-container ${{ secrets.DOCKER_USERNAME }}/nodejs-my:latest
 
