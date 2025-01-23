@@ -1,50 +1,25 @@
-name: Node js Pipeline
+name: nodeJS CI/CD pipeline
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      -main
 
 jobs:
   build:
-    runs-on: nodejs-latest
+    runs-on: ubuntu-latest
 
     steps:
-     
-      - name: Checkout code
+      - name: checkout code
         uses: actions/checkout@v3
 
-     
-      - name: Setup Node.js
-        uses: actions/setup-node@v3.6.0
+      - name: node js setup
+        uses: actions/setup-node@v3
         with:
-          node-version: '18' 
-          cache: 'npm'
+          node-version: 18
 
-     
-      - name: Clear npm cache
-        run: npm cache clean --force
+      - name: Dependaces
+        uses: npm install
 
-      - name: Install dependencies
-        run: npm install --verbose
-
-     
-          #- name: Run linter
-          #run: npm run lint 
-      
-          #- name: Run linter (eslint)
-          #run: npx eslint .
-
-
-     
-      - name: Run tests
-        run: npm test || true
-
-     
-      - name: Build the project
-        run: npm run build
-
-
+      - name: run test
+        uses: npm run test
