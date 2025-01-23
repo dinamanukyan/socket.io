@@ -40,8 +40,20 @@ jobs:
 
       - name: Run Docker container
         run: docker run -d --name nodejs-app-container ${{ secrets.DOCKER_USERNAME }}/nodejs-my:latest
-        
 
+       - name: Send Email Notification
+         uses: dawidd6/action-send-mail@v3
+         with:
+          server_address: smtp.mail.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          to: dina.manukyan@gamail.com
+          subject: "NodeJS |Docker image build | Docker container"
+          body: " Hi :) The Docker image for nodejs-my was successfully built, pushed to Docker Hub, and the container is now running"
+          
+            
+  
   
 
     
